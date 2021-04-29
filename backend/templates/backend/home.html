@@ -1,0 +1,28 @@
+{% extends "backend/base.html" %}
+
+{% block title %} HOME {% endblock %}
+
+{% block body %}
+
+
+        <div class="mx-3 my-3">
+            <form action="{% url 'upload' %}" method="post" enctype="multipart/form-data" id="upload">
+            {% csrf_token %}
+                <div class="mb-3">
+                    <input type="file" class="form-control" id="file" name="file" style="width:400px;">
+                </div>    
+            </form>
+        </div>
+
+        <div class="mx-3 my-3">
+            <form action="{% url 'signout' %}" method="post" enctype="multipart/form-data" id="signout">
+            {% csrf_token %}    
+            </form>
+        </div>
+
+        <div class="mx-3 my-3">
+            <button type="submit" form="upload" class="btn btn-primary">UPLOAD</button>
+            <button type="submit" form="signout" class="btn btn-primary">SIGN OUT</button>
+        </div>
+
+{% endblock %}

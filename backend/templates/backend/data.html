@@ -1,0 +1,61 @@
+{% extends "backend/base.html" %}
+
+{% block title %} DATA {% endblock %}
+
+
+{% block body %}
+
+<div class="mx-3 my-3" >
+<table class="table table-hover" style="border:1px;">
+  <colgroup>
+       <col span="1" style="width: 5%;">
+       <col span="1" style="width: 7%;">
+       <col span="1" style="width: 23%;">
+       <col span="1" style="width: 65%;">
+    </colgroup>
+
+  <thead>
+    <tr>
+      <th style="border-top: 1px solid black;" scope="col">ID</th>
+      <th style="border-left: 1px solid black; border-top: 1px solid black;" scope="col">USER ID</th>
+      <th style="border-left: 1px solid black; border-top: 1px solid black;" scope="col">TITLE</th>
+      <th style="border-left: 1px solid black; border-top: 1px solid black;" scope="col">BODY</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+{% for data in list_data %}
+    <tr>
+        <td>{{data.id_my}}</th>
+        <td style="border-left: 1px solid black;">{{data.userId}}</td>
+        <td style="border-left: 1px solid black;">{{data.title}}</td>
+        <td style="border-left: 1px solid black;">{{data.body}}</td>
+    </tr>
+{% endfor %}
+
+  </tbody>
+</table>
+</div>
+
+<nav aria-label="Page navigation example">
+  <ul class="pagination mx-3 pb-3">
+    <li class="page-item">
+      <a class="page-link" href="#" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+        <span class="sr-only"></span>
+      </a>
+    </li>
+    <li class="page-item"><a class="page-link" href="#">1</a></li>
+    <li class="page-item"><a class="page-link" href="#">2</a></li>
+    <li class="page-item"><a class="page-link" href="#">3</a></li>
+    <li class="page-item">
+      <a class="page-link" href="#" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+        <span class="sr-only"></span>
+      </a>
+    </li>
+  </ul>
+</nav>
+
+
+{% endblock %}

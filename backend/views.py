@@ -29,25 +29,10 @@ def signout(request):
     
 def upload(request):
     if request.method == 'POST':
-        if len(request.FILES.keys()) == 0:
-            return redirect('/')     
-        file = request.FILES['file']
-        data = file.read()
-        try:
-            persons = json.loads(data)
-        except:
-            return redirect('/')
+        persons = json.loads(request.FILES['file'].read())
         for person in persons:
-            try:
-                space = Space(
-                    userId=person['userId'],
-                    id_my=person['id'],
-                    title=person['title'],
-                    body=person['body'],
-                )
-                space.save()
-            except:
-                return redirect('/')
+            space = Space(userId=person['userId'], id_my=person['id'], title=person['title'], body=person['body'])
+            space.save()
         return redirect('/')
     else:
         return redirect('/error')

@@ -1,28 +1,38 @@
 {% extends "backend/base.html" %}
+{% load static %}
 
 {% block title %} HOME {% endblock %}
 
 {% block body %}
 
+    <div class="mx-3 my-3">
+        <form action="{% url 'upload' %}" method="post" enctype="multipart/form-data" id="upload">
+        {% csrf_token %}
+            <div>
+                <input type="file" class="form-control" style="display: none;" id="file" name="file" onchange="updater.write('file', 'filename')">
+                <div style="display: flex;">
+                    <label for="file" class="btn btn-secondary" style="width: auto;"> BROWSE </label>
+                    <label id="filename" class="form-control" style="width: 25%;"> <a style="opacity: 0.8; color: red;"> Please browse to select from your computer! </a> </label>
+                </div>
+            </div>    
+        </form>
+    </div>
 
-        <div class="mx-3 my-3">
-            <form action="{% url 'upload' %}" method="post" enctype="multipart/form-data" id="upload">
-            {% csrf_token %}
-                <div class="mb-3">
-                    <input type="file" class="form-control" id="file" name="file" style="width:25%;">
-                </div>    
-            </form>
-        </div>
+    <div style="display: none;">
+        <form action="{% url 'signout' %}" method="post" enctype="multipart/form-data" id="signout">
+        {% csrf_token %}    
+        </form>
+    </div>
 
-        <div class="mx-3 my-3">
-            <form action="{% url 'signout' %}" method="post" enctype="multipart/form-data" id="signout">
-            {% csrf_token %}    
-            </form>
-        </div>
+    <div class="mx-3 my-3">
+        <button type="button" class="btn btn-primary" onclick="uploader.read('file', 'upload', 'filename')">UPLOAD</button>
+        <button type="submit" class="btn btn-primary" form="signout">SIGN OUT</button>
+    </div>
 
-        <div class="mx-3 my-3">
-            <button type="submit" form="upload" class="btn btn-primary">UPLOAD</button>
-            <button type="submit" form="signout" class="btn btn-primary">SIGN OUT</button>
-        </div>
+<script type="text/javascript" src="{% static 'backend/home.js' %}"></script>
+<script>
+uploader = new Uploader();
+updater = new Updater();
+</script>
 
 {% endblock %}

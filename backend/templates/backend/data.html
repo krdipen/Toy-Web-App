@@ -6,32 +6,33 @@
 {% block body %}
 
 <div style="margin-top:15px; margin-left:15px; margin-right:15px; margin-bottom:15px;">
-<table id="tableid" class="table table-hover my-0" style="box-shadow: 0px 0px 10px 5px;">
-  <colgroup>
-       <col span="1" style="width: 5%;">
-       <col span="1" style="width: 7%;">
-       <col span="1" style="width: 23%;">
-       <col span="1" style="width: 65%;">
-  </colgroup>
-  <thead>
-    <tr>
-      <td class="header" style="border-left: 2px solid black; border-top: 2px solid black; border-bottom: 2px solid black;" scope="col">ID</th>
-      <td class="header" style="border-left: 2px solid black; border-top: 2px solid black; border-bottom: 2px solid black;" scope="col">USER ID</th>
-      <td class="header" style="border-left: 2px solid black; border-top: 2px solid black; border-bottom: 2px solid black;" scope="col">TITLE</th>
-      <td class="header" style="border-left: 2px solid black; border-top: 2px solid black; border-bottom: 2px solid black; border-right: 2px solid black;" scope="col">BODY</th>
-    </tr>
-  </thead>
-  <tbody>
-{% for data in list_data %}
-    <tr>
-        <td style="border-left: 2px solid black; border-bottom: 2px solid black;">{{data.id_my}}</th>
-        <td style="border-left: 2px solid black; border-bottom: 2px solid black;">{{data.userId}}</td>
-        <td style="border-left: 2px solid black; border-bottom: 2px solid black;">{{data.title}}</td>
-        <td style="border-left: 2px solid black; border-bottom: 2px solid black;border-right: 2px solid black;">{{data.body}}</td>
-    </tr>
-{% endfor %}
-  </tbody>
-</table>
+  <table id="tableid" class="table table-hover my-0"
+    style="border-collapse: separate; border: 1px solid #212529; border-radius: 5px 5px 5px 5px; box-shadow: 0px 0px 3px 1px #212529;">
+    <colgroup>
+      <col span="1" style="width: 5%;">
+      <col span="1" style="width: 7%;">
+      <col span="1" style="width: 23%;">
+      <col span="1" style="width: 65%;">
+    </colgroup>
+    <thead>
+      <tr>
+        <td class="header" style="border: 1px solid #212529; border-radius: 3px 0px 0px 0px;" scope="col"> ID </th>
+        <td class="header" style="border: 1px solid #212529;" scope="col"> USER ID </th>
+        <td class="header" style="border: 1px solid #212529;" scope="col"> TITLE </th>
+        <td class="header" style="border: 1px solid #212529; border-radius: 0px 3px 0px 0px;" scope="col"> BODY </th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for data in list_data %}
+      <tr>
+        <td style="border: 1px solid #212529; border-radius: 0px 0px 0px 0px;"> {{data.id_my}} </th>
+        <td style="border: 1px solid #212529;">{{data.userId}}</td>
+        <td style="border: 1px solid #212529;">{{data.title}}</td>
+        <td style="border: 1px solid #212529; border-radius: 0px 0px 0px 0px;"> {{data.body}} </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
 </div>
 
 <div class="input-group px-3" style="display: flex; justify-content: space-between;">
@@ -42,9 +43,11 @@
   <div>
     <table>
       <tr>
-        <td style="padding-right:10px;">ITEMS PER PAGE<td>
+        <td style="padding-right:10px;">ITEMS PER PAGE
         <td>
-          <select class="form-select" id="selectid" onchange="pager.init('pager', 'tableid', 'navid', document.getElementById('selectid').value)">
+        <td>
+          <select class="form-select" id="selectid"
+            onchange="pager.init('pager', 'tableid', 'navid', document.getElementById('selectid').value)">
             <option value="25" selected> 25 </option>
             <option value="50"> 50 </option>
             <option value="100"> 100 </option>
@@ -52,13 +55,13 @@
         </td>
       </tr>
     </table>
-  <div>
+  </div>
 </div>
 
-<script type="text/javascript" src="{% static 'backend/pager.js' %}"></script>
+<script type="text/javascript" src="{% static 'backend/data.js' %}"></script>
 <script>
-let pager = new Pager();
-pager.init('pager', 'tableid', 'navid', document.getElementById('selectid').value);
+  let pager = new Pager();
+  pager.init('pager', 'tableid', 'navid', document.getElementById('selectid').value);
 </script>
 
 {% endblock %}
